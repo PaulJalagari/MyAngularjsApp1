@@ -1,0 +1,30 @@
+/* Styles go here */
+input[type=text]{
+    border-radius: 0px !important;
+  }
+  .ui-datepicker-trigger{
+    position: absolute;
+    margin-top: -28px;
+    right:15px;
+    border:none;
+    background-color:transparent;
+  }
+  
+  .ng-valid{
+    border-left: 2px solid #090;
+  }
+  .ng-invalid{
+    border-left: 2px solid #900;
+  }
+  .button {
+    background-color: #696969;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }

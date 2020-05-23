@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <link href="./styles/isteven-multi-select-4.0.0.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.8/es5-shim.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.js"></script>
+  <!-- <script src="datepicker.js"></script> -->
+  <!-- DatePicker End -->
+  <link rel="stylesheet" href="./styles/style.css" />
+  
+</head>
+
+<body class="container-fluid" ng-app="myApp" ng-controller="MyController">
+
+  <!-- DatePicker -->
+  <div class="container-fluid" >
+    <h4>Select the date range</h4>
+    <div class="well">
+
+      <div class="form-group row">
+        <div class="col-xs-6">
+          <label>Start Date</label>
+          <input type="text" date-picker placeholder="MM/DD/YYYY" maxlength="10" ng-required="true" class="form-control"
+            ng-model="model1.startDate" />
+        </div>
+        <div class="col-xs-6">
+          <label>End Date</label>
+          <input type="text" date-picker placeholder="MM/DD/YYYY" maxlength="10" ng-required="true" class="form-control"
+            ng-model="model1.endDate" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- DatePicker End -->
+  <div>
+    <div>
+     
+      <h4>Select the Regions</h4>
+      <div class="well">
+        <div isteven-multi-select input-model="regions" output-model="newRegions" button-label="icon regionName"
+          item-label="icon regionName maker" tick-property="ticked" on-item-click="generateServiceUnits(false)"
+          on-reset="emptyNewRegions()" on-select-none="emptyNewRegions()" on-select-all="generateServiceUnits(true)">
+        </div>
+        <br />
+        <div>
+
+          <div ng-repeat="item in regions">
+            <input id="{{item.regionId}}" type="radio" name="radioInput" value="{{item.regionName}}"
+              ng-model="item.selected" ng-click="radioChanged(item)" />{{item.regionName}}
+            <!-- <input type="radio" value="Southern" ng-model="selected" ng-change="radioChanged(item)"/>Southern
+        <input type="radio" value="All" ng-model="selected" ng-change="radioChanged(item)"/>All -->
+          </div>
+          <input id="4321" type="radio" name="radioInput" value="All" ng-model="selected"
+            ng-click="radioChanged(selected)" />All
+        </div>
+      </div>
+      <h4>Select the Service Units</h4>
+      <div class="well">
+        <div isteven-multi-select input-model="finalServiceUnitsArray" output-model="selectedServiceUnitsArray"
+          button-label="icon serviceUnitName" item-label="icon serviceUnitName maker" tick-property="ticked"
+          on-item-click="generateSubdivisions(false)" on-reset="emptySelectedServiceUnitsArray()"
+          on-select-all="generateSubdivisions(true)" on-select-none="emptySelectedServiceUnitsArray()">
+        </div>
+      </div>
+      <h4>Select the Sub divisions</h4>
+      <div class="well">
+        <div isteven-multi-select input-model="finalSubDivisionsArray" output-model="selectedSubdivisionArray"
+          button-label="icon subDivisionName" item-label="icon subDivisionName maker" tick-property="ticked"
+          on-reset="emptySelectedSubdivisionArray()" on-select-none="emptySelectedSubdivisionArray()">
+        </div>
+      </div>
+      <!-- on-item-click="generateSelectedSubdivisions(false)" -->
+      <!-- <pre ng-bind="item.selected |json"></pre>  -->
+      <!-- <pre ng-bind="finalServiceUnitsArray |json"></pre> -->
+      <!-- <pre ng-bind="selectedSubdivisionArray |json"></pre> -->
+      <!-- <pre ng-bind="finalSubDivisionsArray |json"></pre>
+        <pre ng-bind="selectedServiceUnitsArray |json"></pre> -->
+      <!-- <pre ng-bind="newRegions |json"></pre>  -->
+      <!-- <pre ng-bind="statesNewArray |json"></pre>
+       
+         <pre ng-bind="finalStatesArray |json"></pre>  -->
+
+
+      <!-- <span>two dropdowns but using an ng-repeat does not work</span>
+        <div ng-repeat="group in groupArray">
+          <div  isteven-multi-select
+                input-model="group.suites"
+                output-model="newArray3.blah"
+                button-label="icon name"
+                item-label="icon name maker"
+                tick-property="ticked"
+          >
+          </div>
+        </div> -->
+      <br />
+      <br />
+      <button ng-click="insertData()" ng-disabled="isDisabled()" style="float: right;margin-right:16px;" class="button">Submit</button>
+      <button ng-click="resetForm()" style="float: right;margin-right:16px;" class="button">Reset</button>
+    </div>
+
+  </div>
+
+<script src="./JS/app.js"></script>
+<script src="./JS/app.constants.js"></script>
+<script src="./JS/utils/isteven-multi-select-4.0.0.js"></script>
+<script src="./JS/directives/datePickerDirective.js"></script>
+<script src="./JS/services/myService.js"></script>
+<script src="./JS/controllers/myController.js"></script>
+</body>
+
+<!-- DatePicker -->
+
+
+</html>
