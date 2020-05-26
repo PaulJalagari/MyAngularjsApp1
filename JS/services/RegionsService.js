@@ -1,16 +1,18 @@
 'use strict';
-window.app.factory('myService', myService);
+window.app.factory('regionsService', regionsService);
 
-myService.$inject = ['$q', '$http'];
+regionsService.$inject = ['$q', '$http'];
 
-function myService($q, $http) {
+function regionsService($q, $http) {
 
     var serviceBasedServiceUnits;
     return {
         getService1: getService1,
         getService2: getService2
     }
-
+    /**
+     * returns service data from 'service1' json file
+     */
     function getService1() {
         return $http.get('./JS/data/service1.json').then(function (response) {
             if (response && response.data) {
@@ -21,7 +23,9 @@ function myService($q, $http) {
         });
     }
 
-
+    /**
+     * returns service data from 'service2' json file
+     */
     function getService2() {
         return $http.get('./JS/data/service2.json').then(function (response) {
             return response;

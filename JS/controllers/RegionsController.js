@@ -1,27 +1,30 @@
 (function () {
-  app.controller('MyController', myController);
+  app.controller('regionsController', regionsController);
 
-  myController.$inject = [
+  regionsController.$inject = [
     '$scope',
     'regions',
     'countryList',
     'statesList',
-    'myService',
+    'regionsService',
     '$timeout'
   ]
 
-  function myController(
+  function regionsController(
     $scope,
     regions,
     countryList,
     statesList,
-    myService,
+    regionsService,
     $timeout
   ) {
     $scope.newRegions = [];
     $scope.regions = regions;
     $scope.selected = '';
-
+    
+    /**
+     * parses array generated from drop down to cerate an array with inner elements(only states)
+     */
     $scope.generateArray = function () {
       $scope.finalStatesArray = [];
       if ($scope.statesNewArray && $scope.statesNewArray.length) {
@@ -44,6 +47,10 @@
       }
 
     }
+    /**
+     * @param  {} val
+     * takes boolean to decide on the array to be parsed to generate array with states
+     */
     $scope.generateArray1 = function (val) {
       $scope.finalStatesArray = [];
       if (!val) {
@@ -52,7 +59,10 @@
         $scope.fillArray(statesList);
       }
     }
-
+    /**
+     * @param  {} inputArray
+     * parses the input array to create an array with states
+     */
     $scope.fillArray = function (inputArray) {
       if (inputArray && inputArray.length) {
         angular.forEach(inputArray, function (item, index) {
@@ -73,15 +83,22 @@
         $scope.finalStatesArray = [];
       }
     }
-
+    /**
+     * returns if statesNewArray scope var is empty
+     */
     $scope.checkIfEmpty = function () {
       return $scope.statesNewArray.length === 0;
       $scope.finalStatesArray = [];
     }
-
+    /**
+     * empties finalStatesArray scope var
+     */
     $scope.emptyArray = function () {
       $scope.finalStatesArray = [];
     }
+    /**
+     * empties newRegions scope array and also child arrays
+     */
     $scope.emptyNewRegions = function () {
       $scope.newRegions = [];
       $scope.selectedServiceUnitsArray = [];
@@ -91,16 +108,19 @@
       //uncheck radio buttons
       $scope.uncheckAllRadioButtons();
     }
+    /**
+     * unchecks all radio buttons
+     */
     $scope.uncheckAllRadioButtons = function () {
       angular.forEach(regions, function (val, l) {
         document.getElementById(val.regionId).checked = false;
       });
       document.getElementById("4321").checked = false;
     }
+    /**
+     * empties selectedServiceUnitsArray scope var and also child arrays
+     */
     $scope.emptySelectedServiceUnitsArray = function () {
-      // $scope.selectedServiceUnitsArray = [];
-      // $scope.finalSubDivisionsArray = [];
-      // $scope.selectedSubdivisionArray = [];
       if ($scope.selectedServiceUnitsArray && $scope.selectedServiceUnitsArray.length) {
         $scope.unSelectItems($scope.selectedServiceUnitsArray);
       }
@@ -113,6 +133,10 @@
         $scope.selectedSubdivisionArray = [];
       }
     }
+    /**
+     * @param  {} inputArr
+     * unchecks(sets ticked=false) fields of array passed
+     */
     $scope.unSelectItems = function (inputArr) {
       if (inputArr && inputArr.length) {
         angular.forEach(inputArr, function (val, i) {
@@ -120,15 +144,23 @@
         })
       }
     }
+    /**
+     * empties selectedSubdivisionArray scope var
+     */
     $scope.emptySelectedSubdivisionArray = function () {
       $scope.selectedSubdivisionArray = [];
     }
-    // angular.extend(this, $controller('myCalendarCtrl', {$scope: $scope}));
+    
     $scope.model1 = {
       startDate: new Date(),
       endDate: new Date()
     }
     //radio button
+    /**
+     * @param  {} item
+     * this is executed on click of radio button and is used to generate service units array for Service Units drop-down
+     * 
+     */
     $scope.radioChanged = function (item) {
 
       if (item && item.regionName) {
@@ -162,15 +194,17 @@
     $scope.selectedServiceUnitsArray = [];
     $scope.selectedSubdivisionsArray = [];
     $scope.serviceBasedServiceUnits = [];
-
+    /**
+     * @param  {} val
+     * takes boolean to decide on what array to use for generating the ServiceUnits array for drop-down
+     * 
+     */
     $scope.generateServiceUnits = function (val) {
       $scope.finalServiceUnitsArray = [];
       $scope.selectedServiceUnitsArray = [];
       $scope.finalSubDivisionsArray = [];
       $scope.selectedSubdivisionArray = [];
       $scope.emptySelectedServiceUnitsArray();
-      // $scope.data1 = [];
-      // $scope.data2 = [];
       $scope.serviceBasedServiceUnits = [];
       $scope.finalServiceUnitsArray = [];
       var isRadioSelected = false;
@@ -182,20 +216,6 @@
             document.getElementById("4321").checked = true;
             isRadioSelected = true;
           }
-          //call both services
-          /*  myService.getService1().then(function (resp) {
-              $scope.data1 = resp.data;
-            }, function (res) {
-              $scope.data1 = [];
-            });
-            myService.getService2().then(function (resp) {
-              $scope.data2 = resp.data;
-            }, function (res) {
-              $scope.data2 = [];
-            });
- 
-            $scope.generateServiceUnitArrayFromServices($scope.data1);
-            $scope.generateServiceUnitArrayFromServices($scope.data2);*/
 
           angular.forEach($scope.newRegions, function (val, k) {
             //check radio button
@@ -205,7 +225,7 @@
             if (val && val.regionName) {
               const promise1 = new Promise((resolve, reject) => {
                 if (val.regionName.toLowerCase() === "northern") {
-                  myService.getService1().then(function (response) {
+                  regionsService.getService1().then(function (response) {
                     $scope.data1 = response.data;
                     resolve($scope.data1);
                   }, function (response) {
@@ -214,7 +234,7 @@
 
 
                 } else {
-                  myService.getService2().then(function (response) {
+                  regionsService.getService2().then(function (response) {
                     $scope.data2 = response.data;
                     resolve($scope.data2);
                   });
@@ -251,7 +271,7 @@
             if (val && val.regionName) {
               const promise1 = new Promise((resolve, reject) => {
                 if (val.regionName.toLowerCase() === "northern") {
-                  myService.getService1().then(function (response) {
+                  regionsService.getService1().then(function (response) {
                     $scope.data1 = response.data;
                     resolve($scope.data1);
                   }, function (response) {
@@ -260,7 +280,7 @@
 
 
                 } else {
-                  myService.getService2().then(function (response) {
+                  regionsService.getService2().then(function (response) {
                     $scope.data2 = response.data;
                     resolve($scope.data2);
                   });
@@ -281,7 +301,11 @@
 
       }
     }
-
+    /**
+     * @param  {} data
+     * generates an array based on the service data passed to it for populating drop-down 
+     * 
+     */
     $scope.generateServiceUnitArrayFromServices = function (data) {
       if (data && data.payload && data.payload.length) {
         angular.forEach(data.payload, function (item, v) {
@@ -296,7 +320,10 @@
         });
       }
     }
-
+    /**
+     * @param  {} inputArray
+     * @deprecated
+     */
     $scope.fillServiceUnitsArray = function (inputArray) {
       var isRadioSelected = false;
       if (inputArray && inputArray.length) {
@@ -409,6 +436,9 @@
       }
       console.log($scope.finalData);
     }
+    /**
+     * used for reset functionality to reset page to original
+     */
     $scope.resetForm = function () {
 
       $scope.newRegions = [];
@@ -434,7 +464,9 @@
         }
       })
     }
-
+    /**
+     * returns if nothing is selected in the dropdown
+     */
     $scope.isDisabled = function () {
       if (!$scope.newRegions || !$scope.newRegions.length)
         return true;

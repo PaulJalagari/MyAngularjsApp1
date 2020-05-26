@@ -20,7 +20,7 @@
   
 </head>
 
-<body class="container-fluid" ng-app="myApp" ng-controller="MyController">
+<body class="container-fluid" ng-app="regionsApp" ng-controller="regionsController">
 
   <!-- DatePicker -->
   <div class="container-fluid" >
@@ -62,7 +62,7 @@
         <input type="radio" value="All" ng-model="selected" ng-change="radioChanged(item)"/>All -->
           </div>
           <input id="4321" type="radio" name="radioInput" value="All" ng-model="selected"
-            ng-click="radioChanged(selected)" />All
+            ng-change="radioChanged(selected)" />All
         </div>
       </div>
       <h4>Select the Service Units</h4>
@@ -115,8 +115,8 @@
 <script src="./JS/app.constants.js"></script>
 <script src="./JS/utils/isteven-multi-select-4.0.0.js"></script>
 <script src="./JS/directives/datePickerDirective.js"></script>
-<script src="./JS/services/myService.js"></script>
-<script src="./JS/controllers/myController.js"></script>
+<script src="./JS/services/RegionsService.js"></script>
+<script src="./JS/controllers/RegionsController.js"></script>
 </body>
 
 <!-- DatePicker -->
