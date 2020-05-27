@@ -1,0 +1,31 @@
+{
+  "name": "angjs-paul-master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulJalagari/MyAngularjsApp1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulJalagari/MyAngularjsApp1/issues"
+  },
+  "homepage": "https://github.com/PaulJalagari/MyAngularjsApp1#readme",
+  "devDependencies": {
+    "bower": "^1.8.8",
+    "jasmine": "^3.5.0",
+    "karma": "^5.0.9",
+    "karma-phantomjs-launcher": "^1.0.4"
+  },
+  "dependencies": {
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-cli": "^2.0.0",
+    "karma-jasmine": "^3.1.1",
+    "phantomjs-prebuilt": "^2.1.13"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "angjs-paul-master",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Paul Jalagari <paul@blackswan-technologies.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/PaulJalagari/MyAngularjsApp1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.7.9",
+    "angular-mocks": "^1.7.9"
+  }
+}
