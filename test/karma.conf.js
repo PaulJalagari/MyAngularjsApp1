@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Tue May 26 2020 19:13:58 GMT+0530 (India Standard Time)
+// Generated on Thu Jun 18 2020 11:42:32 GMT+0530 (India Standard Time)
 
 module.exports = function(config) {
   config.set({
@@ -18,7 +18,7 @@ module.exports = function(config) {
       '../bower_components/angular/angular.js',
       '../bower_components/angular-mocks/angular-mocks.js',
       '../JS/app.js',
-      '../test/unit/*.js'
+      'unit/*.js'
     ],
 
 
